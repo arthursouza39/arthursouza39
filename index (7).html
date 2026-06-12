@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Food — Planilha de CMV para Restaurantes</title>
+  <meta name="description" content="Planilha profissional de CMV para donos de restaurante. Acesso imediato por R$ 47,90." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #CC0000;
+      --red-dark: #a30000;
+      --red-bg: #FFF5F5;
+      --red-border: #FECACA;
+      --ink: #1F2937;
+      --ink-2: #374151;
+      --ink-3: #6B7280;
+      --ink-4: #9CA3AF;
+      --border: #E5E7EB;
+      --border-2: #D1D5DB;
+      --bg: #F8F9FA;
+      --bg-2: #F3F4F6;
+      --white: #FFFFFF;
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 64px; padding: 0 6%;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1.15rem; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo-badge {
+      background: var(--red); color: white; font-size: 0.72rem;
+      font-weight: 700; padding: 3px 10px; border-radius: 100px;
+      letter-spacing: 0.3px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { color: var(--ink-3); font-size: 0.85rem; font-weight: 500; text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      background: var(--red); color: white !important;
+      padding: 9px 20px; border-radius: 100px;
+      font-weight: 700; font-size: 0.84rem;
+      transition: background 0.15s, box-shadow 0.15s;
+      box-shadow: 0 1px 4px rgba(204,0,0,0.25);
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--red-dark) !important; box-shadow: 0 2px 8px rgba(204,0,0,0.35); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--white);
+      padding: 116px 6% 96px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center; min-height: 100vh;
+    }
+    .hero-chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--red-bg); color: var(--red);
+      border: 1px solid var(--red-border);
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.4px;
+      margin-bottom: 22px;
+    }
+    .hero-chip-dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+    .hero h1 {
+      font-size: clamp(2.3rem, 3.8vw, 3.3rem); font-weight: 800;
+      line-height: 1.1; letter-spacing: -1.2px; color: var(--ink); margin-bottom: 18px;
+    }
+    .hero h1 .accent { color: var(--red); }
+    .hero-desc { font-size: 1rem; color: var(--ink-3); line-height: 1.8; margin-bottom: 16px; max-width: 460px; }
+    .hero-callout {
+      background: var(--bg); border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 0 12px 12px 0;
+      padding: 13px 16px; margin-bottom: 36px; max-width: 460px;
+    }
+    .hero-callout p { font-size: 0.85rem; color: var(--ink-3); line-height: 1.65; }
+    .hero-callout strong { color: var(--ink-2); font-weight: 600; }
+    .hero-actions { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      background: var(--red); color: white;
+      padding: 14px 28px; border-radius: 100px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.15s; box-shadow: 0 2px 8px rgba(204,0,0,0.3);
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(204,0,0,0.4); }
+    .btn-outline {
+      background: transparent; color: var(--ink-3);
+      padding: 13px 22px; border-radius: 100px;
+      font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; border: 1px solid var(--border-2);
+      transition: all 0.15s;
+    }
+    .btn-outline:hover { border-color: var(--ink-3); color: var(--ink); background: var(--bg); }
+    .hero-trust { display: flex; align-items: center; gap: 8px; color: var(--ink-4); font-size: 0.78rem; }
+    .hero-trust strong { color: var(--ink-3); }
+
+    /* dashboard */
+    .dashboard {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 24px;
+      box-shadow: var(--shadow-lg);
+    }
+    .dash-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .dash-bar-left { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 600; color: var(--ink-2); }
+    .dash-bar-left svg { color: var(--red); }
+    .dash-tag { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); padding: 3px 10px; border-radius: 100px; font-size: 0.68rem; font-weight: 700; }
+    table.dash-t { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+    table.dash-t th { text-align: left; font-size: 0.67rem; font-weight: 600; color: var(--ink-4); text-transform: uppercase; letter-spacing: 0.6px; padding: 0 10px 10px; border-bottom: 1px solid var(--border); }
+    table.dash-t td { padding: 10px; font-size: 0.81rem; color: var(--ink-2); border-bottom: 1px solid var(--bg-2); }
+    table.dash-t tr:last-child td { border-bottom: none; }
+    .pill { padding: 2px 10px; border-radius: 100px; font-size: 0.64rem; font-weight: 700; white-space: nowrap; }
+    .pill-g { background: #DCFCE7; color: #166534; }
+    .pill-y { background: #FEF9C3; color: #854D0E; }
+    .pill-r { background: var(--red-bg); color: var(--red); }
+    .dash-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .dash-mini-item {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 11px 13px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .dash-mini-item svg { color: var(--red); flex-shrink: 0; }
+    .dash-mini-text { font-size: 0.71rem; color: var(--ink-3); line-height: 1.4; }
+    .dash-mini-text strong { color: var(--ink-2); display: block; font-size: 0.75rem; font-weight: 600; }
+    .dash-footer {
+      margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .dash-footer span { font-size: 0.72rem; color: var(--ink-4); }
+    .dash-footer strong { font-size: 1.35rem; font-weight: 800; color: var(--red); }
+    .dash-footer strong small { font-size: 0.72rem; font-weight: 500; color: var(--ink-4); }
+
+    /* ── STRIP ── */
+    .strip {
+      background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .strip-item {
+      padding: 28px 24px; border-right: 1px solid var(--border);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-item svg { color: var(--red); flex-shrink: 0; }
+    .strip-val { font-size: 1.3rem; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; line-height: 1.2; }
+    .strip-label { font-size: 0.76rem; color: var(--ink-4); margin-top: 1px; }
+
+    /* ── SECTION UTILS ── */
+    .chip {
+      display: inline-block; background: var(--red-bg); color: var(--red);
+      border: 1px solid var(--red-border);
+      padding: 5px 13px; border-radius: 100px; font-size: 0.72rem;
+      font-weight: 600; letter-spacing: 0.3px; margin-bottom: 14px;
+    }
+    h2.sh { font-size: clamp(1.9rem, 2.8vw, 2.6rem); font-weight: 800; letter-spacing: -0.6px; color: var(--ink); margin-bottom: 12px; line-height: 1.18; }
+    p.sp { font-size: 0.97rem; color: var(--ink-3); max-width: 520px; line-height: 1.8; }
+    .rl { width: 36px; height: 3px; background: var(--red); border-radius: 2px; margin: 14px 0 26px; }
+
+    /* ── FOR WHO ── */
+    .forwho { background: var(--bg); padding: 96px 6%; }
+    .forwho-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .forwho-img { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); }
+    .forwho-img img { width: 100%; height: 440px; object-fit: cover; display: block; }
+    .fw-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+    .fw-list li {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px;
+      box-shadow: var(--shadow-xs); transition: all 0.15s;
+    }
+    .fw-list li:hover { border-color: var(--red-border); box-shadow: var(--shadow-sm); }
+    .fw-list li svg { color: var(--red); flex-shrink: 0; margin-top: 2px; }
+    .fw-list li p { font-size: 0.87rem; color: var(--ink-2); line-height: 1.6; }
+
+    /* ── WHAT IS ── */
+    .whatis { background: var(--white); padding: 96px 6%; }
+    .whatis-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .whatis-text p { font-size: 0.96rem; color: var(--ink-3); line-height: 1.82; margin-bottom: 16px; }
+    .whatis-note {
+      background: var(--red-bg); border: 1px solid var(--red-border);
+      border-radius: 14px; padding: 15px 17px; margin-top: 20px;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .whatis-note svg { color: var(--red); flex-shrink: 0; margin-top: 2px; }
+    .whatis-note p { font-size: 0.84rem; color: #7F1D1D; line-height: 1.65; margin: 0; }
+    .whatis-note strong { color: #991B1B; }
+    .tabs-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 20px; box-shadow: var(--shadow-lg);
+    }
+    .tabs-wbar { display: flex; gap: 5px; margin-bottom: 16px; }
+    .tabs-wbar span { width: 10px; height: 10px; border-radius: 50%; }
+    .tab-rows { display: flex; flex-direction: column; gap: 5px; }
+    .trow {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 13px; font-size: 0.81rem; color: var(--ink-3);
+      transition: all 0.12s;
+    }
+    .trow.active { background: var(--red-bg); border-color: var(--red-border); color: var(--red); font-weight: 600; }
+    .tpill { font-size: 0.63rem; padding: 2px 9px; border-radius: 4px; font-weight: 700; }
+    .trow.active .tpill { background: var(--red); color: white; }
+    .trow:not(.active) .tpill { background: var(--border); color: var(--ink-4); }
+
+    /* ── FEATURES ── */
+    .features { background: var(--bg); padding: 96px 6%; }
+    .features-hd { max-width: 1160px; margin: 0 auto 48px; }
+    .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; max-width: 1160px; margin: 0 auto; }
+    .feat-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 20px;
+      box-shadow: var(--shadow-xs); transition: all 0.15s;
+    }
+    .feat-card:hover { border-color: var(--red-border); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .feat-icon { width: 38px; height: 38px; background: var(--red-bg); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--red); margin-bottom: 14px; }
+    .feat-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--ink); margin-bottom: 7px; }
+    .feat-card p { font-size: 0.82rem; color: var(--ink-3); line-height: 1.65; }
+
+    /* ── HOW ── */
+    .how { background: var(--white); padding: 96px 6%; }
+    .how-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .how-img { border-radius: 20px; overflow: hidden; position: relative; box-shadow: var(--shadow-lg); }
+    .how-img img { width: 100%; height: 460px; object-fit: cover; display: block; }
+    .how-lbl {
+      position: absolute; bottom: 18px; left: 18px; right: 18px;
+      background: rgba(255,255,255,0.95); border: 1px solid var(--border);
+      border-radius: 12px; padding: 11px 14px; box-shadow: var(--shadow-sm);
+    }
+    .how-lbl p { font-size: 0.75rem; color: var(--ink-4); }
+    .how-lbl strong { font-size: 0.87rem; color: var(--ink); display: block; }
+    .how-steps { display: flex; flex-direction: column; }
+    .how-step { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .how-step:last-child { border-bottom: none; }
+    .how-num {
+      width: 34px; height: 34px; min-width: 34px; background: var(--red-bg);
+      border: 1px solid var(--red-border); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.78rem; color: var(--red); flex-shrink: 0;
+    }
+    .how-step h3 { font-size: 0.91rem; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+    .how-step p { font-size: 0.81rem; color: var(--ink-3); line-height: 1.65; }
+
+    /* ── DELIVERY ── */
+    .delivery { background: var(--bg); padding: 80px 6%; }
+    .delivery-inner { max-width: 960px; margin: 0 auto; text-align: center; }
+    .delivery h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.4px; }
+    .delivery-sub { font-size: 0.97rem; color: var(--ink-3); margin-bottom: 44px; }
+    .del-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .del-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 18px; text-align: left;
+      box-shadow: var(--shadow-xs); transition: all 0.15s;
+    }
+    .del-card:hover { border-color: var(--red-border); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+    .del-icon { color: var(--red); margin-bottom: 12px; display: block; }
+    .del-card h3 { font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .del-card p { font-size: 0.81rem; color: var(--ink-3); line-height: 1.65; }
+    .del-tag { color: var(--red); font-weight: 600; }
+
+    /* ── PRICING ── */
+    .pricing { background: var(--white); padding: 96px 6%; text-align: center; }
+    .pricing-wrap { max-width: 500px; margin: 44px auto 0; }
+    .pricing-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg);
+    }
+    .pricing-top {
+      background: var(--red); padding: 30px 36px 26px; text-align: center;
+    }
+    .pricing-top-badge {
+      display: inline-block; background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3); color: white;
+      padding: 4px 13px; border-radius: 100px;
+      font-size: 0.69rem; font-weight: 700; letter-spacing: 0.6px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .pricing-top h3 { font-size: 1.35rem; font-weight: 800; color: white; margin-bottom: 4px; }
+    .pricing-top p { font-size: 0.82rem; color: rgba(255,255,255,0.72); }
+    .pricing-body { padding: 30px 34px; }
+    .pricing-amount { display: flex; align-items: flex-end; justify-content: center; gap: 2px; margin-bottom: 4px; }
+    .p-rs { font-size: 1.1rem; font-weight: 600; color: var(--ink-4); padding-bottom: 9px; }
+    .p-num { font-size: 5rem; font-weight: 900; color: var(--ink); letter-spacing: -3px; line-height: 1; }
+    .p-cents { font-size: 1.7rem; font-weight: 800; color: var(--ink); padding-bottom: 7px; }
+    .pricing-once { font-size: 0.78rem; color: var(--ink-4); text-align: center; margin-bottom: 26px; }
+    .pricing-list { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; text-align: left; }
+    .pricing-list li { display: flex; align-items: center; gap: 11px; font-size: 0.87rem; color: var(--ink-2); }
+    .pricing-list li svg { color: var(--red); flex-shrink: 0; }
+    .btn-buy {
+      display: block; width: 100%; background: var(--red); color: white;
+      padding: 17px; border-radius: 100px; font-weight: 700; font-size: 0.98rem;
+      text-decoration: none; text-align: center;
+      transition: all 0.15s; box-shadow: 0 2px 10px rgba(204,0,0,0.3);
+    }
+    .btn-buy:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(204,0,0,0.4); }
+    .pricing-trust { font-size: 0.75rem; color: var(--ink-4); margin-top: 13px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .pricing-trust svg { color: var(--ink-4); }
+
+    /* ── UPSELL ── */
+    .upsell { background: var(--bg); padding: 52px 6%; }
+    .upsell-inner {
+      max-width: 760px; margin: 0 auto;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 18px; padding: 28px 32px;
+      display: flex; gap: 20px; align-items: flex-start;
+      box-shadow: var(--shadow-sm);
+    }
+    .upsell-icon { color: var(--red); flex-shrink: 0; margin-top: 2px; }
+    .upsell-text h3 { font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 7px; }
+    .upsell-text p { font-size: 0.86rem; color: var(--ink-3); line-height: 1.78; }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: var(--red); color: white;
+      text-align: center; padding: 96px 6%;
+      position: relative; overflow: hidden;
+    }
+    .final-cta::before { content: ''; position: absolute; top: -40%; left: -15%; width: 550px; height: 550px; background: rgba(255,255,255,0.04); border-radius: 50%; pointer-events: none; }
+    .final-cta::after { content: ''; position: absolute; bottom: -50%; right: -10%; width: 450px; height: 450px; background: rgba(0,0,0,0.07); border-radius: 50%; pointer-events: none; }
+    .final-cta h2 { font-size: clamp(1.9rem, 3.8vw, 2.8rem); font-weight: 800; margin-bottom: 14px; letter-spacing: -0.6px; position: relative; z-index: 1; }
+    .final-cta p { font-size: 1rem; color: rgba(255,255,255,0.78); margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+    .final-price { font-size: 3rem; font-weight: 900; letter-spacing: -1px; position: relative; z-index: 1; margin-bottom: 28px; line-height: 1; }
+    .final-price small { font-size: 1.1rem; opacity: 0.6; }
+    .btn-white {
+      background: white; color: var(--red); padding: 15px 38px;
+      border-radius: 100px; font-weight: 700; font-size: 0.98rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.15s; box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      position: relative; z-index: 1;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.2); }
+    .final-note { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 16px; position: relative; z-index: 1; }
+
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      color: var(--ink-4); text-align: center; padding: 28px 6%; font-size: 0.79rem;
+    }
+    .footer-logo { font-size: 0.97rem; font-weight: 800; color: var(--ink-2); margin-bottom: 4px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .footer-logo .fl-badge { background: var(--red); color: white; font-size: 0.65rem; padding: 2px 8px; border-radius: 100px; font-weight: 700; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 108px 5% 64px; gap: 44px; }
+      .strip { grid-template-columns: 1fr 1fr; }
+      .strip-item { border-bottom: 1px solid var(--border); }
+      .forwho-inner, .whatis-inner, .how-inner { grid-template-columns: 1fr; gap: 40px; }
+      .forwho-img img, .how-img img { height: 260px; }
+      .upsell-inner { flex-direction: column; }
+      .pricing-body { padding: 26px 24px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      Track Food
+      <span class="nav-logo-badge">CMV</span>
+    </div>
+    <div class="nav-links">
+      <a href="#forwho">Para quem &eacute;</a>
+      <a href="#features">Funcionalidades</a>
+      <a href="#how">Como funciona</a>
+      <a href="#pricing" class="nav-cta">Acessar por R$ 47,90</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-chip">
+        <span class="hero-chip-dot"></span>
+        Para donos de restaurante e alimenta&ccedil;&atilde;o
+      </div>
+      <h1>Descubra qual prato est&aacute; <span class="accent">destruindo sua margem</span> todo m&ecirc;s</h1>
+      <p class="hero-desc">A Planilha de CMV da Track Food mostra, prato a prato, o que est&aacute; te dando lucro e o que est&aacute; te dando preju&iacute;zo. Sem curso, sem consultoria, sem enrola&ccedil;&atilde;o.</p>
+      <div class="hero-callout">
+        <p><strong>N&atilde;o &eacute; um curso sobre CMV.</strong> &Eacute; a ferramenta que calcula o CMV do seu restaurante com ingredientes, pratos e pre&ccedil;os reais. Voc&ecirc; s&oacute; preenche e usa.</p>
+      </div>
+      <div class="hero-actions">
+        <div class="btn-row">
+          <a href="#pricing" class="btn-primary">Quero a planilha agora &#8594;</a>
+          <a href="#how" class="btn-outline">Como funciona</a>
+        </div>
+        <div class="hero-trust">
+          <i data-lucide="lock" style="width:13px;height:13px"></i>
+          Acesso imediato por <strong>&nbsp;R$ 47,90&nbsp;</strong> via Kirvano
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div>
+      <div class="dashboard">
+        <div class="dash-bar">
+          <div class="dash-bar-left">
+            <i data-lucide="bar-chart-2" style="width:15px;height:15px"></i>
+            Dashboard CMV
+          </div>
+          <div class="dash-tag">R$ 47,90</div>
+        </div>
+        <table class="dash-t">
+          <thead>
+            <tr>
+              <th>Prato</th>
+              <th>CMV%</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>X-Bacon Especial</td><td>28%</td><td><span class="pill pill-g">Dentro da meta</span></td></tr>
+            <tr><td>Frango Grelhado</td><td>41%</td><td><span class="pill pill-y">Aten&ccedil;&atilde;o</span></td></tr>
+            <tr><td>Pizza 4 Queijos</td><td>58%</td><td><span class="pill pill-r">Ajuste urgente</span></td></tr>
+            <tr><td>Marmita Executiva</td><td>33%</td><td><span class="pill pill-g">Dentro da meta</span></td></tr>
+          </tbody>
+        </table>
+        <div class="dash-mini">
+          <div class="dash-mini-item">
+            <i data-lucide="target" style="width:15px;height:15px"></i>
+            <div class="dash-mini-text"><strong>Simulador</strong>iFood e promo&ccedil;&otilde;es</div>
+          </div>
+          <div class="dash-mini-item">
+            <i data-lucide="cpu" style="width:15px;height:15px"></i>
+            <div class="dash-mini-text"><strong>An&aacute;lise IA</strong>Sugest&otilde;es autom&aacute;ticas</div>
+          </div>
+          <div class="dash-mini-item">
+            <i data-lucide="trending-up" style="width:15px;height:15px"></i>
+            <div class="dash-mini-text"><strong>Equil&iacute;brio</strong>Faturamento m&iacute;nimo</div>
+          </div>
+          <div class="dash-mini-item">
+            <i data-lucide="play-circle" style="width:15px;height:15px"></i>
+            <div class="dash-mini-text"><strong>2 Aulas</strong>Acesso vitalício</div>
+          </div>
+        </div>
+        <div class="dash-footer">
+          <span>Acesso imediato ap&oacute;s a compra</span>
+          <strong><small>R$</small> 47,90</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-item">
+      <i data-lucide="layout-grid" style="width:20px;height:20px"></i>
+      <div><div class="strip-val">8</div><div class="strip-label">Abas integradas</div></div>
+    </div>
+    <div class="strip-item">
+      <i data-lucide="zap" style="width:20px;height:20px"></i>
+      <div><div class="strip-val">10+</div><div class="strip-label">Funcionalidades</div></div>
+    </div>
+    <div class="strip-item">
+      <i data-lucide="video" style="width:20px;height:20px"></i>
+      <div><div class="strip-val">2 aulas</div><div class="strip-label">Acesso vitalício</div></div>
+    </div>
+    <div class="strip-item">
+      <i data-lucide="credit-card" style="width:20px;height:20px"></i>
+      <div><div class="strip-val">R$ 47,90</div><div class="strip-label">Pagamento &uacute;nico</div></div>
+    </div>
+  </div>
+
+  <!-- FOR WHO -->
+  <section class="forwho" id="forwho">
+    <div class="forwho-inner">
+      <div class="forwho-img">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&auto=format&fit=crop&q=80" alt="Restaurante" />
+      </div>
+      <div>
+        <div class="chip">Para quem &eacute;</div>
+        <h2 class="sh">Essa planilha foi feita para voc&ecirc; se...</h2>
+        <div class="rl"></div>
+        <ul class="fw-list">
+          <li><i data-lucide="check-circle" style="width:15px;height:15px"></i><p>Vende bem mas n&atilde;o sabe para onde o dinheiro vai no final do m&ecirc;s</p></li>
+          <li><i data-lucide="check-circle" style="width:15px;height:15px"></i><p>Precifica no achismo e quer saber o custo real de cada prato</p></li>
+          <li><i data-lucide="check-circle" style="width:15px;height:15px"></i><p>Quer saber se vale aceitar promo&ccedil;&atilde;o no iFood antes de confirmar</p></li>
+          <li><i data-lucide="check-circle" style="width:15px;height:15px"></i><p>J&aacute; comprou curso de gest&atilde;o e n&atilde;o conseguiu aplicar. Aqui voc&ecirc; n&atilde;o precisa aprender, s&oacute; preencher</p></li>
+          <li><i data-lucide="check-circle" style="width:15px;height:15px"></i><p>Quer controlar o CMV mas n&atilde;o tem verba para contratar consultoria</p></li>
+          <li><i data-lucide="check-circle" style="width:15px;height:15px"></i><p>Tem restaurante, pizzaria, hamburgueria, marmitaria ou lanchonete</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS -->
+  <section class="whatis">
+    <div class="whatis-inner">
+      <div class="whatis-text">
+        <div class="chip">O que &eacute; o produto</div>
+        <h2 class="sh">Uma ferramenta. N&atilde;o um curso.</h2>
+        <div class="rl"></div>
+        <p>A Planilha de CMV da Track Food &eacute; um sistema no Google Sheets que voc&ecirc; preenche com os dados do seu restaurante e ela faz todos os c&aacute;lculos sozinha.</p>
+        <p>Voc&ecirc; enxerga em tempo real quais pratos est&atilde;o dentro da meta e quais precisam de ajuste. Sem precisar entender de contabilidade ou gest&atilde;o financeira.</p>
+        <div class="whatis-note">
+          <i data-lucide="info" style="width:15px;height:15px"></i>
+          <p><strong>N&atilde;o &eacute; um curso sobre CMV.</strong> N&atilde;o &eacute; uma planilha gen&eacute;rica de template. N&atilde;o tem mensalidade. &Eacute; a ferramenta pronta com os dados reais do seu neg&oacute;cio.</p>
+        </div>
+      </div>
+      <div>
+        <div class="tabs-card">
+          <div class="tabs-wbar">
+            <span style="background:#FF5F57"></span>
+            <span style="background:#FEBC2E"></span>
+            <span style="background:#28C840"></span>
+          </div>
+          <div class="tab-rows">
+            <div class="trow"><span>In&iacute;cio</span><span class="tpill">&#10003;</span></div>
+            <div class="trow active"><span>Dashboard CMV</span><span class="tpill">ATIVO</span></div>
+            <div class="trow"><span>Ingredientes</span><span class="tpill">&#10003;</span></div>
+            <div class="trow"><span>Fichas T&eacute;cnicas</span><span class="tpill">&#10003;</span></div>
+            <div class="trow"><span>Contas Fixas</span><span class="tpill">&#10003;</span></div>
+            <div class="trow"><span>Hist&oacute;rico Mensal</span><span class="tpill">&#10003;</span></div>
+            <div class="trow"><span>Simulador</span><span class="tpill">&#10003;</span></div>
+            <div class="trow"><span>An&aacute;lise com IA</span><span class="tpill">&#10003;</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="features-hd">
+      <div class="chip">Funcionalidades</div>
+      <h2 class="sh">Tudo que vem na planilha</h2>
+      <div class="rl"></div>
+      <p class="sp">10 funcionalidades integradas, todas ativas desde o primeiro acesso.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon"><i data-lucide="file-spreadsheet" style="width:17px;height:17px"></i></div><h3>Planilha no Google Sheets</h3><p>Voc&ecirc; faz uma c&oacute;pia e j&aacute; come&ccedil;a a usar. Funciona como um sistema, n&atilde;o como uma planilha comum.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i data-lucide="bar-chart-2" style="width:17px;height:17px"></i></div><h3>Dashboard com sem&aacute;foro CMV</h3><p>Verde, amarelo e vermelho por prato. Vis&atilde;o instant&acirc;nea de quais pratos comprometem sua margem.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i data-lucide="tag" style="width:17px;height:17px"></i></div><h3>Sugest&atilde;o de pre&ccedil;o ideal</h3><p>Para cada prato fora da meta, a planilha calcula automaticamente o pre&ccedil;o correto para atingir sua margem.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i data-lucide="percent" style="width:17px;height:17px"></i></div><h3>Simulador de promo&ccedil;&otilde;es</h3><p>Antes de aceitar qualquer campanha do iFood ou cupom, simule o impacto na margem em segundos.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i data-lucide="trending-up" style="width:17px;height:17px"></i></div><h3>Ponto de equil&iacute;brio autom&aacute;tico</h3><p>Saiba exatamente quanto precisa faturar por dia e por m&ecirc;s para cobrir todos os custos fixos.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i data-lucide="refresh-cw" style="width:17px;height:17px"></i></div><h3>Atualiza&ccedil;&atilde;o autom&aacute;tica</h3><p>Atualizou o pre&ccedil;o de um ingrediente? Todos os pratos que usam ele recalculam sozinhos.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i data-lucide="calendar" style="width:17px;height:17px"></i></div><h3>Hist&oacute;rico mensal</h3><p>Acompanhe a evolu&ccedil;&atilde;o do CMV m&ecirc;s a m&ecirc;s e identifique tend&ecirc;ncias no seu neg&oacute;cio.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i data-lucide="cpu" style="width:17px;height:17px"></i></div><h3>An&aacute;lise com Intelig&ecirc;ncia Artificial</h3><p>Clique em um prato fora da meta e receba sugest&atilde;o autom&aacute;tica de ajuste de pre&ccedil;o ou troca de ingrediente.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i data-lucide="play-circle" style="width:17px;height:17px"></i></div><h3>2 aulas gravadas inclus&iacute;das</h3><p>Aulas objetivas no Kirvano. Acesso imediato ap&oacute;s a compra, sem prazo de expira&ccedil;&atilde;o.</p></div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section class="how" id="how">
+    <div class="how-inner">
+      <div class="how-img">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80" alt="Restaurante" />
+        <div class="how-lbl">
+          <p>Acesso imediato ap&oacute;s a compra</p>
+          <strong>Comece hoje mesmo</strong>
+        </div>
+      </div>
+      <div>
+        <div class="chip">Como funciona</div>
+        <h2 class="sh">Comprou. Acessou. Come&ccedil;ou a usar.</h2>
+        <div class="rl"></div>
+        <div class="how-steps">
+          <div class="how-step"><div class="how-num">01</div><div><h3>Compra via Kirvano</h3><p>Checkout seguro. Voc&ecirc; recebe o acesso no e-mail em segundos.</p></div></div>
+          <div class="how-step"><div class="how-num">02</div><div><h3>Acessa a planilha</h3><p>Link direto para o Google Sheets. Voc&ecirc; faz uma c&oacute;pia para a sua conta.</p></div></div>
+          <div class="how-step"><div class="how-num">03</div><div><h3>Assiste &agrave;s 2 aulas</h3><p>Aulas gravadas no Kirvano ensinando a preencher e usar no dia a dia.</p></div></div>
+          <div class="how-step"><div class="how-num">04</div><div><h3>Preenche seus dados</h3><p>Ingredientes, pratos e pre&ccedil;os do seu restaurante. A planilha calcula tudo.</p></div></div>
+          <div class="how-step"><div class="how-num">05</div><div><h3>Toma decis&otilde;es com dados reais</h3><p>Veja o dashboard, simule promo&ccedil;&otilde;es e ajuste seus pre&ccedil;os com confian&ccedil;a.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERY -->
+  <section class="delivery">
+    <div class="delivery-inner">
+      <div class="chip">Formato de entrega</div>
+      <h2>Sem espera. Sem agendamento.</h2>
+      <p class="delivery-sub">Tudo entregue automaticamente no momento da compra.</p>
+      <div class="del-grid">
+        <div class="del-card"><i data-lucide="file-spreadsheet" class="del-icon" style="width:22px;height:22px"></i><h3>Planilha</h3><p>Google Sheets. Voc&ecirc; recebe o link, faz uma c&oacute;pia e usa na sua conta. <span class="del-tag">Acesso imediato.</span></p></div>
+        <div class="del-card"><i data-lucide="video" class="del-icon" style="width:22px;height:22px"></i><h3>Aulas</h3><p>2 aulas gravadas no Kirvano. Diretas ao ponto. <span class="del-tag">Sem prazo de expira&ccedil;&atilde;o.</span></p></div>
+        <div class="del-card"><i data-lucide="shield-check" class="del-icon" style="width:22px;height:22px"></i><h3>Plataforma</h3><p>Kirvano. Checkout seguro, entrega autom&aacute;tica e acesso instant&acirc;neo.</p></div>
+        <div class="del-card"><i data-lucide="user-check" class="del-icon" style="width:22px;height:22px"></i><h3>Autoatendimento</h3><p>Produto completo. As aulas cobrem tudo que voc&ecirc; precisa para come&ccedil;ar sozinho.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="chip">Investimento</div>
+    <h2 class="sh">Um valor. Acesso para sempre.</h2>
+    <div class="pricing-wrap">
+      <div class="pricing-card">
+        <div class="pricing-top">
+          <div class="pricing-top-badge">Pagamento &uacute;nico</div>
+          <h3>Planilha de CMV + 2 Aulas</h3>
+          <p>Google Sheets &middot; Kirvano &middot; Acesso vitalício</p>
+        </div>
+        <div class="pricing-body">
+          <div class="pricing-amount">
+            <span class="p-rs">R$</span>
+            <span class="p-num">47</span>
+            <span class="p-cents">,90</span>
+          </div>
+          <div class="pricing-once">pagamento &uacute;nico &middot; sem mensalidade &middot; sem renova&ccedil;&atilde;o</div>
+          <ul class="pricing-list">
+            <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>Planilha completa no Google Sheets</li>
+            <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>8 abas integradas e autom&aacute;ticas</li>
+            <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>Dashboard com sem&aacute;foro CMV</li>
+            <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>Simulador de promo&ccedil;&otilde;es e taxas de delivery</li>
+            <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>Bot&atilde;o de an&aacute;lise com Intelig&ecirc;ncia Artificial</li>
+            <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>2 aulas gravadas com acesso vitalício</li>
+          </ul>
+          <a href="https://pay.kirvano.com/9343e963-9a9c-47d7-93bd-0b338e40a83a" class="btn-buy" target="_blank">Acessar agora por R$ 47,90 &#8594;</a>
+          <div class="pricing-trust">
+            <i data-lucide="lock" style="width:12px;height:12px"></i>
+            Compra segura &middot; Acesso imediato &middot; Plataforma Kirvano
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPSELL -->
+  <section class="upsell">
+    <div class="upsell-inner">
+      <i data-lucide="lightbulb" class="upsell-icon" style="width:22px;height:22px"></i>
+      <div class="upsell-text">
+        <h3>Prefere que a gente fa&ccedil;a tudo por voc&ecirc;?</h3>
+        <p>Al&eacute;m da planilha de autoatendimento, a Track Food oferece o <strong>Servi&ccedil;o CMV</strong>: nossa equipe preenche a planilha com os dados reais do seu restaurante, entrega pronta e explicada prato a prato. Ideal para quem n&atilde;o tem tempo ou quer resultado imediato.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>Comece hoje a entender o CMV do seu restaurante</h2>
+    <p>Acesso imediato. Sem mensalidade. Sem curso longo. S&oacute; a ferramenta que voc&ecirc; precisa.</p>
+    <div class="final-price"><small>R$</small> 47,90</div>
+    <a href="https://pay.kirvano.com/9343e963-9a9c-47d7-93bd-0b338e40a83a" class="btn-white" target="_blank">Acessar a planilha agora &#8594;</a>
+    <p class="final-note">Kirvano &middot; Pagamento seguro &middot; Acesso imediato ap&oacute;s a compra</p>
+  </section>
+
+  <footer>
+    <div class="footer-logo">
+      Track Food
+      <span class="fl-badge">CMV</span>
+    </div>
+    <p>Gest&atilde;o de CMV para restaurantes &middot; Todos os direitos reservados</p>
+  </footer>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>
