@@ -3,223 +3,316 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Oferta exclusiva por tiempo limitado. Descubre el Producto Premium con 50% de descuento y garantía de 30 días." />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Producto Premium — Oferta Exclusiva" />
-  <meta property="og:description" content="Aprovecha el 50% de descuento por tiempo limitado. Garantía total de 30 días." />
+  <meta name="description" content="60 recetas de ensaladas en frasco + aderezos. Ensaladas listas en la nevera hasta 7 días sin marchitarse. + 3 bonos exclusivos gratis." />
+  <meta property="og:title" content="Ensaladas en Frasco + Aderezos — 60 Recetas" />
+  <meta property="og:description" content="60 recetas para tener ensalada lista en la nevera, ¡7 días sin marchitarse! + 3 bonos gratis." />
   <meta property="og:type" content="website" />
-  <title>Producto Premium — Oferta Exclusiva por Tiempo Limitado</title>
+  <title>Ensaladas en Frasco + Aderezos — 60 Recetas</title>
+
+  <!-- Fuentes: script (logo), condensada (bloques) y cuerpo -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700;800&family=Yellowtail&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-  <!-- ===== Barra superior / anuncio ===== -->
-  <div class="topbar">
-    🔥 OFERTA POR TIEMPO LIMITADO — Termina en
-    <span id="topbar-timer" class="topbar-timer">--:--:--</span>
+  <!-- ===== Header flotante ===== -->
+  <div class="sticky-bar">
+    <span class="sticky-bar__brand">🥗 Ensaladas en Frasco</span>
+    <a href="#oferta" class="btn">¡Quiero ahora! →</a>
   </div>
 
   <!-- ===== Hero ===== -->
   <header class="hero">
     <div class="container hero__inner">
-      <span class="badge">⭐ Más de 12.000 clientes satisfechos</span>
-      <h1 class="hero__title">
-        Transforma tu día a día con el <span class="highlight">Producto Premium</span>
-      </h1>
-      <p class="hero__subtitle">
-        La solución que miles de personas ya usan para conseguir resultados reales.
-        Hoy, con <strong>50% de descuento</strong> y garantía total de 30 días.
+      <span class="top-badge">🥗 +5.000 personas ya transformaron su alimentación</span>
+
+      <div class="logo">
+        <span class="logo__script">ensaladas</span>
+        <span class="logo__frasco"><b>en frasco</b><span>+aderezos</span></span>
+      </div>
+
+      <p class="hero__headline">
+        <strong>60 RECETAS</strong> para que hagas en tu casa y nunca más te quedes sin
+        ensalada lista en la nevera, <strong>¡7 días sin marchitarse!</strong>
       </p>
 
-      <div class="hero__cta">
-        <a href="#oferta" class="btn btn--primary btn--lg">Quiero mi descuento ahora</a>
-        <span class="hero__note">✅ Pago seguro · ✅ Envío gratis · ✅ Garantía de 30 días</span>
+      <!-- Sustituye este bloque por tu imagen del hero -->
+      <div class="img-ph img-ph--hero">
+        <span class="img-ph__icon">🥗</span>
+        <span class="img-ph__text">Ensalada en frasco por capas
+          <small>Imagen del producto — sustituir por tu foto</small>
+        </span>
       </div>
 
-      <div class="hero__stars">
-        <span class="stars">★★★★★</span>
-        <span class="hero__rating">4,9/5 basado en 2.847 valoraciones</span>
-      </div>
+      <a href="#oferta" class="btn btn--lg btn--block">¡Quiero las recetas ahora!</a>
     </div>
   </header>
 
-  <!-- ===== Beneficios ===== -->
-  <section class="section" id="beneficios">
+  <!-- ===== Lo que vas a encontrar ===== -->
+  <section class="section section--cream">
     <div class="container">
-      <h2 class="section__title">¿Por qué elegir el Producto Premium?</h2>
-      <p class="section__lead">Todo lo que necesitas, en un solo lugar.</p>
+      <p class="eyebrow">Lo que</p>
+      <h2 class="section__title">Vas a encontrar:</h2>
 
-      <div class="grid grid--3">
-        <article class="card">
-          <div class="card__icon">🚀</div>
-          <h3>Resultados rápidos</h3>
-          <p>Nota la diferencia desde el primer uso. Diseñado para ofrecer resultados visibles en poco tiempo.</p>
+      <ul class="checklist">
+        <li><span class="check-ico">✓</span> Funciona con cualquier frasco</li>
+        <li><span class="check-ico">✓</span> 60 ensaladas deliciosas</li>
+        <li><span class="check-ico">✓</span> Aderezos irresistibles</li>
+        <li><span class="check-ico">✓</span> El secreto de las capas</li>
+        <li><span class="check-ico">✓</span> Conservación de 7 días</li>
+        <li><span class="check-ico">⏱</span> Listas en 30 minutos</li>
+        <li><span class="check-ico">✓</span> Paso a paso de preparación</li>
+      </ul>
+
+      <!-- Sustituye por tu imagen (ensaladas guardadas en la nevera) -->
+      <div class="img-ph img-ph--wide">
+        <span class="img-ph__icon">🧊</span>
+        <span class="img-ph__text">Ensaladas organizadas en la nevera
+          <small>Con anotaciones: orden de montaje · 7 días sin marchitarse · listas en 30 min</small>
+        </span>
+      </div>
+
+      <div class="cta-wrap">
+        <a href="#oferta" class="btn btn--lg">¡Quiero comer mejor!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Ensaladas de la semana ===== -->
+  <section class="section section--sage">
+    <div class="container">
+      <p class="eyebrow">Algunas ensaladas</p>
+      <h2 class="section__title">Que vas a disfrutar esta semana:</h2>
+
+      <div class="salad-grid">
+        <article class="salad-card">
+          <div class="img-ph">
+            <span class="img-ph__icon">🥗</span>
+            <span class="img-ph__text">Ensalada refrescante en frasco
+              <small>Sustituir por tu foto</small>
+            </span>
+          </div>
+          <h3>Ensalada Refrescante + Aderezo Cítrico</h3>
+          <p class="salad-card__meta">Conservación: 7 días<br>Calorías: 100 kcal</p>
         </article>
-        <article class="card">
-          <div class="card__icon">🛡️</div>
-          <h3>Calidad garantizada</h3>
-          <p>Materiales de primera y control de calidad riguroso. Si no te encanta, te devolvemos el dinero.</p>
+
+        <article class="salad-card">
+          <div class="img-ph">
+            <span class="img-ph__icon">🍅</span>
+            <span class="img-ph__text">Ensalada caprese en frasco
+              <small>Sustituir por tu foto</small>
+            </span>
+          </div>
+          <h3>Ensalada Caprese</h3>
+          <p class="salad-card__meta">Conservación: 7 días<br>Calorías: 120 kcal</p>
         </article>
-        <article class="card">
-          <div class="card__icon">💡</div>
-          <h3>Fácil de usar</h3>
-          <p>Sin complicaciones. Simple, intuitivo y pensado para cualquier persona, sin importar su experiencia.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon">🚚</div>
-          <h3>Envío gratis</h3>
-          <p>Recíbelo en la puerta de tu casa sin coste adicional. Entrega rápida y seguimiento en tiempo real.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon">💬</div>
-          <h3>Soporte 24/7</h3>
-          <p>Nuestro equipo está disponible para ayudarte en cualquier momento, todos los días de la semana.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon">💰</div>
-          <h3>Mejor precio</h3>
-          <p>Calidad premium al precio más justo del mercado. Y hoy, con un descuento exclusivo del 50%.</p>
+
+        <article class="salad-card">
+          <div class="img-ph">
+            <span class="img-ph__icon">🥑</span>
+            <span class="img-ph__text">Ensalada con aguacate en frasco
+              <small>Sustituir por tu foto</small>
+            </span>
+          </div>
+          <h3>Ensalada Mediterránea</h3>
+          <p class="salad-card__meta">Conservación: 7 días<br>Calorías: 130 kcal</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== Cómo funciona ===== -->
-  <section class="section section--alt" id="como-funciona">
+  <!-- ===== Aderezos irresistibles ===== -->
+  <section class="section section--cream">
     <div class="container">
-      <h2 class="section__title">Cómo funciona</h2>
-      <p class="section__lead">En solo 3 pasos sencillos.</p>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step__num">1</div>
-          <h3>Haz tu pedido</h3>
-          <p>Elige tu oferta y completa la compra de forma segura en menos de 2 minutos.</p>
+      <h2 class="section__title">Frescura y aderezos irresistibles</h2>
+      <div class="salad-grid">
+        <div class="img-ph img-ph--wide">
+          <span class="img-ph__icon">🥗</span>
+          <span class="img-ph__text">Ensalada con aderezo verde de aguacate
+            <small>Sustituir por tu foto</small>
+          </span>
         </div>
-        <div class="step">
-          <div class="step__num">2</div>
-          <h3>Recíbelo en casa</h3>
-          <p>Preparamos y enviamos tu pedido con seguimiento. Llega rápido y sin coste de envío.</p>
-        </div>
-        <div class="step">
-          <div class="step__num">3</div>
-          <h3>Disfruta los resultados</h3>
-          <p>Empieza a usarlo y comprueba por qué miles de personas ya confían en nosotros.</p>
+        <div class="img-ph img-ph--wide">
+          <span class="img-ph__icon">🥣</span>
+          <span class="img-ph__text">Ensalada con aderezo cremoso
+            <small>Sustituir por tu foto</small>
+          </span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Testimonios ===== -->
-  <section class="section" id="testimonios">
+  <!-- ===== Adelanto de la clase 1 (VIDEO) ===== -->
+  <section class="section section--sage">
     <div class="container">
-      <h2 class="section__title">Lo que dicen nuestros clientes</h2>
-      <p class="section__lead">Miles de personas ya han transformado su experiencia.</p>
+      <p class="eyebrow">Mira el adelanto</p>
+      <h2 class="section__title">De la clase 1:</h2>
 
-      <div class="grid grid--3">
-        <blockquote class="testimonial">
-          <div class="stars">★★★★★</div>
-          <p>"Superó todas mis expectativas. La calidad es increíble y llegó antes de lo previsto. ¡Totalmente recomendado!"</p>
-          <footer>— María G., Madrid</footer>
-        </blockquote>
-        <blockquote class="testimonial">
-          <div class="stars">★★★★★</div>
-          <p>"Estaba dudando por el precio de otras marcas, pero esto vale cada céntimo. Volvería a comprarlo sin pensarlo."</p>
-          <footer>— Carlos R., Buenos Aires</footer>
-        </blockquote>
-        <blockquote class="testimonial">
-          <div class="stars">★★★★★</div>
-          <p>"El soporte me ayudó enseguida con una duda. Se nota que es una empresa seria. Muy contenta con la compra."</p>
-          <footer>— Lucía M., Ciudad de México</footer>
-        </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Oferta / Precio ===== -->
-  <section class="section section--offer" id="oferta">
-    <div class="container">
-      <div class="offer-box">
-        <span class="offer-box__flag">OFERTA EXCLUSIVA</span>
-        <h2 class="offer-box__title">Producto Premium</h2>
-        <p class="offer-box__desc">Todo lo que necesitas, con garantía total de 30 días.</p>
-
-        <div class="offer-box__price">
-          <span class="price-old">99 €</span>
-          <span class="price-new">49 €</span>
-          <span class="price-tag">-50%</span>
+      <!-- ESPACIO PARA VIDEO: pega aquí tu <iframe> o <video> cuando lo tengas -->
+      <div class="video-ph">
+        <div class="video-ph__play">▶</div>
+        <div class="video-ph__text">Espacio para tu video
+          <small>Pega aquí el código de incrustación (YouTube / Vimeo)</small>
         </div>
-        <p class="offer-box__installments">o 3 pagos sin intereses de 16,33 €</p>
-
-        <ul class="offer-box__list">
-          <li>✅ Envío gratis a toda España y Latinoamérica</li>
-          <li>✅ Garantía de devolución de 30 días</li>
-          <li>✅ Soporte prioritario 24/7</li>
-          <li>✅ Pago 100% seguro</li>
-        </ul>
-
-        <div class="countdown" id="countdown">
-          <div class="countdown__item"><span id="cd-hours">00</span><small>Horas</small></div>
-          <div class="countdown__item"><span id="cd-mins">00</span><small>Min</small></div>
-          <div class="countdown__item"><span id="cd-secs">00</span><small>Seg</small></div>
-        </div>
-
-        <!-- TODO: cambia el href por el enlace real de tu pasarela de pago / checkout -->
-        <a href="#" class="btn btn--primary btn--lg btn--block">Comprar ahora con 50% de descuento</a>
-        <p class="offer-box__secure">🔒 Compra segura · Tus datos están protegidos</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== FAQ ===== -->
-  <section class="section section--alt" id="faq">
-    <div class="container container--narrow">
-      <h2 class="section__title">Preguntas frecuentes</h2>
-
-      <div class="faq">
-        <details class="faq__item">
-          <summary>¿Cuánto tarda el envío?</summary>
-          <p>El envío estándar tarda entre 3 y 7 días hábiles. Recibirás un código de seguimiento por correo electrónico.</p>
-        </details>
-        <details class="faq__item">
-          <summary>¿Cómo funciona la garantía?</summary>
-          <p>Tienes 30 días desde la recepción para probarlo. Si no estás satisfecho, te devolvemos el 100% del importe.</p>
-        </details>
-        <details class="faq__item">
-          <summary>¿Los pagos son seguros?</summary>
-          <p>Sí. Utilizamos pasarelas de pago cifradas y no almacenamos los datos de tu tarjeta.</p>
-        </details>
-        <details class="faq__item">
-          <summary>¿Puedo pagar a plazos?</summary>
-          <p>Sí, ofrecemos la opción de pagar en 3 cuotas sin intereses en el momento del checkout.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CTA final ===== -->
-  <section class="section section--final-cta">
+  <!-- ===== Bonos ===== -->
+  <section class="section section--cream">
     <div class="container">
-      <h2>No dejes pasar esta oferta</h2>
-      <p>El descuento del 50% termina pronto. Asegura el tuyo hoy mismo.</p>
-      <a href="#oferta" class="btn btn--primary btn--lg">Quiero aprovechar la oferta</a>
+      <p class="eyebrow">Recibe también</p>
+      <h2 class="section__title">+ 3 bonos exclusivos:</h2>
+
+      <div class="bonus-grid">
+        <article class="bonus-card">
+          <span class="ribbon">GRATIS</span>
+          <div class="img-ph">
+            <span class="img-ph__icon">🥤</span>
+            <span class="img-ph__text">Smoothie detox<small>Sustituir por tu foto</small></span>
+          </div>
+          <div class="bonus-card__body">
+            <span class="bonus-card__label">Bono 1:</span>
+            <span class="bonus-card__title">Smoothies Detox — 20 recetas</span>
+            <p class="bonus-card__desc">20 bebidas que limpian tu organismo mientras disfrutas. Ideales para empezar el día con energía y sin culpa.</p>
+            <p class="bonus-card__price"><s>R$29,90</s><b>¡Hoy es gratis!</b></p>
+          </div>
+        </article>
+
+        <article class="bonus-card">
+          <span class="ribbon">GRATIS</span>
+          <div class="img-ph">
+            <span class="img-ph__icon">🧡</span>
+            <span class="img-ph__text">Shot matutino<small>Sustituir por tu foto</small></span>
+          </div>
+          <div class="bonus-card__body">
+            <span class="bonus-card__label">Bono 2:</span>
+            <span class="bonus-card__title">Shots Matutinos — 5 recetas</span>
+            <p class="bonus-card__desc">El ritual de la mañana que acelera tu metabolismo y te da energía para todo el día en menos de 2 minutos.</p>
+            <p class="bonus-card__price"><s>R$29,90</s><b>¡Hoy es gratis!</b></p>
+          </div>
+        </article>
+
+        <article class="bonus-card">
+          <span class="ribbon">GRATIS</span>
+          <div class="img-ph">
+            <span class="img-ph__icon">🍋</span>
+            <span class="img-ph__text">Agua saborizada<small>Sustituir por tu foto</small></span>
+          </div>
+          <div class="bonus-card__body">
+            <span class="bonus-card__label">Bono 3:</span>
+            <span class="bonus-card__title">Aguas Saborizadas — 15 recetas</span>
+            <p class="bonus-card__desc">Deja de tomar jugos industriales llenos de azúcar. 15 formas deliciosas de hidratarte y cuidar tu salud al mismo tiempo.</p>
+            <p class="bonus-card__price"><s>R$29,90</s><b>¡Hoy es gratis!</b></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-wrap">
+        <a href="#oferta" class="btn btn--lg">¡Quiero todo + 3 bonos!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Mensajes / testimonios (VIDEO + WhatsApp) ===== -->
+  <section class="section section--white">
+    <div class="container">
+      <p class="eyebrow">Mira los mensajes</p>
+      <h2 class="section__title">Que recibo casi todos los días:</h2>
+
+      <!-- ESPACIO PARA VIDEO: testimonio en video -->
+      <div class="video-ph">
+        <div class="video-ph__play">▶</div>
+        <div class="video-ph__text">Espacio para tu video
+          <small>Pega aquí el código de incrustación (YouTube / Vimeo)</small>
+        </div>
+        <div class="video-ph__caption">LECHUGA EL <em>LUNES</em></div>
+      </div>
+
+      <p class="wa-highlight"><b>¡Tú puedes ser</b><span>la próxima!</span></p>
+
+      <div class="wa-grid">
+        <article class="wa-card">
+          <div class="wa-card__head"><span class="wa-card__avatar"></span> Mariza Bastos</div>
+          <div class="wa-card__body">
+            <div class="wa-card__bubble">¡Amando tu contenido! Las ensaladas quedan tan prácticas que hasta mi marido empezó a montar las suyas en serio, ¡ha cambiado mucho aquí en casa!</div>
+          </div>
+        </article>
+
+        <article class="wa-card">
+          <div class="wa-card__head"><span class="wa-card__avatar"></span> Rafaela Castro</div>
+          <div class="wa-card__body">
+            <div class="wa-card__bubble">Hice mis primeras ensaladas en frasco y quedaron hermosas! Hasta mi hija que no come nada verde está pidiendo jajaja ¡gracias de verdad! ❤️</div>
+          </div>
+        </article>
+
+        <article class="wa-card">
+          <div class="wa-card__head"><span class="wa-card__avatar"></span> Silvia Dorneles</div>
+          <div class="wa-card__body">
+            <div class="wa-card__bubble">¡Necesito agradecerte! 😍 Empecé a hacer las ensaladas de tu curso y estoy impresionada, quedan perfectas toda la semana. ¡Nunca más me quedé sin algo saludable para comer!</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ¿Esto te pasa? ===== -->
+  <section class="section section--cream">
+    <div class="container">
+      <h2 class="section__title">¿Esto te pasa a ti?</h2>
+      <ul class="pain-list">
+        <li><span class="x-ico">✕</span> Pereza de lavar y cortar ensalada todos los días.</li>
+        <li><span class="x-ico">✕</span> Tiras la ensalada antes de poder usarla.</li>
+        <li><span class="x-ico">✕</span> Dejas de comer ensalada algunos días de la semana.</li>
+        <li><span class="x-ico">✕</span> Te cansaste de lechuga y tomate.</li>
+        <li><span class="x-ico">✕</span> Ya comes sano, pero fallas en la ensalada.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Oferta ===== -->
+  <section class="section section--sage" id="oferta">
+    <div class="container offer">
+      <h2 class="section__title">Entonces necesitas esto:</h2>
+
+      <!-- Sustituye por el mockup de tu producto -->
+      <div class="img-ph offer__mockup img-ph--tall">
+        <span class="best-seller">⭐ Best Seller · +3.000 descargas</span>
+        <span class="img-ph__icon">📱💻</span>
+        <span class="img-ph__text">Mockup del ebook "Ensaladas en Frasco"
+          <small>Sustituir por tu imagen del producto</small>
+        </span>
+      </div>
+
+      <!-- TODO: confirma el precio principal (no aparecía en las capturas).
+           Mantengo el formato R$ como en los bonos. -->
+      <div class="offer__price">
+        <s>R$97,00</s>
+        <b>R$29,90</b>
+      </div>
+      <p class="offer__installments">o 3x sin intereses · acceso inmediato</p>
+
+      <a href="#" class="btn btn--lg btn--block">¡Quiero mis 60 recetas + 3 bonos!</a>
+      <p class="offer__secure">🔒 Compra 100% segura · acceso inmediato tras el pago</p>
     </div>
   </section>
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="container">
-      <p class="footer__brand">Producto Premium</p>
+      <p class="footer__brand">ensaladas en frasco</p>
       <nav class="footer__nav">
         <a href="#">Términos y condiciones</a>
         <a href="#">Política de privacidad</a>
         <a href="#">Contacto</a>
       </nav>
-      <p class="footer__copy">© <span id="year"></span> Producto Premium. Todos los derechos reservados.</p>
+      <p>© <span id="year"></span> Ensaladas en Frasco. Todos los derechos reservados.</p>
       <p class="footer__disclaimer">
-        Esta es una página de demostración con contenido de ejemplo. Sustituye los textos, precios,
-        imágenes y enlaces por los de tu propia oferta.
+        Página de demostración. Sustituye las imágenes, los videos, el precio y los enlaces de compra
+        por los tuyos antes de publicar.
       </p>
     </div>
   </footer>
