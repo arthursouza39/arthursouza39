@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-[#F8F9FA] text-tinta antialiased;
+}
+
+/* Chip do semáforo do CMV */
+.chip-semaforo {
+  @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-semibold;
+}
+.chip-verde {
+  @apply bg-green-50 text-semaforo-verde;
+}
+.chip-amarelo {
+  @apply bg-amber-50 text-semaforo-amarelo;
+}
+.chip-vermelho {
+  @apply bg-red-50 text-semaforo-vermelho;
+}
+
+/* Botão primário da marca */
+.btn-marca {
+  @apply inline-flex items-center justify-center rounded-lg bg-marca px-4 py-2.5 font-semibold text-white transition hover:bg-marca-escuro disabled:opacity-60;
+}
+.btn-secundario {
+  @apply inline-flex items-center justify-center rounded-lg border border-tinta-4/40 bg-white px-4 py-2.5 font-semibold text-tinta-2 transition hover:bg-gray-50;
+}
+
+.card {
+  @apply rounded-xl border border-gray-200 bg-white p-5 shadow-sm;
+}
+
+.campo {
+  @apply w-full rounded-lg border border-gray-300 px-3 py-2.5 outline-none transition focus:border-marca focus:ring-2 focus:ring-marca/20;
+}
+.rotulo {
+  @apply mb-1.5 block text-sm font-medium text-tinta-2;
+}
