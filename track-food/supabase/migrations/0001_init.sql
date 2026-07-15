@@ -124,8 +124,11 @@ create policy "restaurantes_do_dono" on public.restaurantes
   for all using (user_id = auth.uid()) with check (user_id = auth.uid());
 
 -- Helper: um restaurante_id pertence ao usuário logado?
+-- SECURITY INVOKER: só consulta restaurantes (que já tem RLS por auth.uid()),
+-- então não precisa de privilégio elevado — evita exposição via RPC.
 create or replace function public.eh_dono_do_restaurante(rid uuid)
-returns boolean language sql security definer stable as $$
+returns boolean language sql security invoker stable
+set search_path = public as $$
   select exists (
     select 1 from public.restaurantes r
     where r.id = rid and r.user_id = auth.uid()
