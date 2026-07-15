@@ -23,6 +23,18 @@ export async function restauranteAtual(): Promise<{
     .eq("user_id", user.id)
     .maybeSingle();
 
-  if (!restaurante) redirect("/cadastro");
-  return { restaurante: restaurante as Restaurante, userId: user.id };
+  if (restaurante) return { restaurante: restaurante as Restaurante, userId: user.id };
+
+  // Primeiro acesso: cria o restaurante a partir do nome informado no cadastro
+  // (guardado nos metadados do usuário). Robusto ao fluxo de confirmação de
+  // e-mail, em que a sessão só existe depois do clique no link.
+  const nome = (user.user_metadata?.nome_restaurante as string)?.trim() || "Meu Restaurante";
+  const { data: novo } = await supabase
+    .from("restaurantes")
+    .insert({ user_id: user.id, nome })
+    .select("*")
+    .single();
+
+  if (!novo) redirect("/login");
+  return { restaurante: novo as Restaurante, userId: user.id };
 }

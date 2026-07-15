@@ -13,11 +13,13 @@ export default function AuthForm({ inicial = "entrar" }: { inicial?: "entrar" | 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
+  const [aviso, setAviso] = useState("");
   const [carregando, setCarregando] = useState(false);
 
   async function enviar(e: React.FormEvent) {
     e.preventDefault();
     setErro("");
+    setAviso("");
     setCarregando(true);
 
     if (modo === "entrar") {
@@ -29,19 +31,26 @@ export default function AuthForm({ inicial = "entrar" }: { inicial?: "entrar" | 
       return;
     }
 
-    // Criar conta
-    const { data, error } = await supabase.auth.signUp({ email, password: senha });
-    if (error || !data.user) {
-      setCarregando(false);
-      return setErro(error?.message ?? "Não foi possível criar a conta.");
-    }
-    const { error: erroRest } = await supabase
-      .from("restaurantes")
-      .insert({ user_id: data.user.id, nome });
+    // Criar conta — o nome do restaurante vai nos metadados; o restaurante em si
+    // é criado no primeiro acesso autenticado (ver restauranteAtual).
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password: senha,
+      options: {
+        data: { nome_restaurante: nome },
+        emailRedirectTo: typeof window !== "undefined" ? `${window.location.origin}/auth/callback` : undefined,
+      },
+    });
     setCarregando(false);
-    if (erroRest) return setErro("Conta criada, mas falhou ao cadastrar o restaurante.");
-    router.push("/onboarding");
-    router.refresh();
+    if (error) return setErro(error.message);
+
+    if (data.session) {
+      router.push("/"); // confirmação de e-mail desativada: já entra
+      router.refresh();
+    } else {
+      setAviso("Enviamos um e-mail de confirmação. Confirme o cadastro e depois faça login.");
+      setModo("entrar");
+    }
   }
 
   return (
@@ -88,6 +97,7 @@ export default function AuthForm({ inicial = "entrar" }: { inicial?: "entrar" | 
               autoComplete={modo === "entrar" ? "current-password" : "new-password"} required />
           </div>
           {erro && <p className="form-msg">{erro}</p>}
+          {aviso && <p className="form-msg" style={{ color: "var(--verde-ink)" }}>{aviso}</p>}
           <button type="submit" className="btn btn-primary" style={{ width: "100%", marginTop: 4 }} disabled={carregando}>
             {carregando ? "Aguarde..." : modo === "entrar" ? "Entrar" : "Criar conta e começar"}
           </button>
