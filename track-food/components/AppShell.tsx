@@ -111,10 +111,10 @@ export default function AppShell({
         </nav>
 
         <div className="topbar">
-          <div className="rest">
+          <Link href="/restaurante" className="rest" style={{ textDecoration: "none", color: "inherit" }}>
             <b>{restaurante.nome}</b>
             <small style={{ textTransform: "capitalize" }}>{hoje}</small>
-          </div>
+          </Link>
           <span className="meta-pill">
             <span className="dot" /> Meta de CMV: {formatarPercent(restaurante.meta_margem, 0)}
           </span>
