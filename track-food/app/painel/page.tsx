@@ -1,56 +1,48 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { criarClienteServidor } from "@/lib/supabase/server";
-import { formatarPercent } from "@/lib/cmv/calculos";
+import AppShell from "@/components/AppShell";
+import { Icone } from "@/components/Icones";
+import { restauranteAtual } from "@/lib/supabase/dados";
 
-/** 09. Painel do dia — tela principal (shell da Fase 0; widgets vêm nas próximas fases). */
+/** 09. Painel do dia — hub principal do restaurante. */
 export default async function PainelPage() {
-  const supabase = criarClienteServidor();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/login");
-
-  const { data: restaurante } = await supabase
-    .from("restaurantes")
-    .select("*")
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  if (!restaurante) redirect("/cadastro");
+  const { restaurante } = await restauranteAtual();
   if (!restaurante.onboarding_completo) redirect("/onboarding");
 
-  const modulos = [
-    { href: "/ingredientes", titulo: "Ingredientes", desc: "Base de insumos" },
-    { href: "/fichas-tecnicas", titulo: "Fichas técnicas", desc: "CMV por prato" },
-    { href: "/dashboard-cmv", titulo: "Dashboard CMV", desc: "Semáforo dos pratos" },
-    { href: "/canais", titulo: "Canais de venda", desc: "iFood, Salão, Delivery" },
-    { href: "/simulador", titulo: "Simulador", desc: "Promoções" },
-    { href: "/contas-fixas", titulo: "Contas fixas", desc: "Ponto de equilíbrio" },
+  const passos = [
+    { href: "/canais", titulo: "Configure seus canais", desc: "iFood, Salão, Delivery e suas taxas." },
+    { href: "/ingredientes", titulo: "Cadastre os ingredientes", desc: "Sua base de insumos com preço por unidade." },
+    { href: "/fichas-tecnicas", titulo: "Monte as fichas técnicas", desc: "O CMV de cada prato é calculado aqui." },
+    { href: "/dashboard-cmv", titulo: "Acompanhe o semáforo", desc: "Veja quais pratos estão no vermelho." },
   ];
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-8">
-      <header className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-extrabold text-tinta">
-            {restaurante.nome}
-          </h1>
-          <p className="text-tinta-3">
-            Meta de CMV: {formatarPercent(restaurante.meta_margem, 0)}
-          </p>
-        </div>
-        <span className="chip-semaforo chip-verde">Painel do dia</span>
-      </header>
-
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {modulos.map((m) => (
-          <Link key={m.href} href={m.href} className="card transition hover:shadow-md">
-            <h2 className="font-semibold text-tinta">{m.titulo}</h2>
-            <p className="text-sm text-tinta-3">{m.desc}</p>
-          </Link>
-        ))}
+    <AppShell restaurante={restaurante}>
+      <div className="page-head">
+        <h1>Painel do dia</h1>
+        <p>Bem-vindo de volta. Comece configurando os dados do seu restaurante.</p>
       </div>
-    </main>
+
+      <div className="card card-p" style={{ marginBottom: 16 }}>
+        <div className="eyebrow" style={{ marginBottom: 14 }}>Comece por aqui</div>
+        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+          {passos.map((p, i) => (
+            <Link key={p.href} href={p.href} className="card card-p" style={{ display: "block" }}>
+              <div className="eyebrow" style={{ color: "var(--brand)" }}>Passo {i + 1}</div>
+              <div style={{ fontWeight: 650, marginTop: 6 }}>{p.titulo}</div>
+              <div className="muted" style={{ marginTop: 3 }}>{p.desc}</div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="callout ai">
+        <Icone name="ai" className="ic" />
+        <div>
+          <b>Dica:</b> comece cadastrando seus ingredientes mais usados. Depois, ao montar as
+          fichas técnicas, o CMV de cada prato aparece automaticamente com o semáforo.
+        </div>
+      </div>
+    </AppShell>
   );
 }

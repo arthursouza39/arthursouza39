@@ -6,8 +6,7 @@ import { criarClienteBrowser } from "@/lib/supabase/client";
 
 /**
  * 01. Onboarding em 5 passos.
- * Fase 0: esqueleto navegável que conclui o onboarding. As telas de foto de
- * cardápio/nota (passos 3 e 4) serão plugadas na Fase 2 (IA).
+ * As telas de foto de cardápio/nota (passos 3 e 4) serão plugadas na Fase 2 (IA).
  */
 const PASSOS = [
   { titulo: "Cadastro", desc: "Sua conta e restaurante estão criados. Vamos configurar o essencial." },
@@ -29,10 +28,7 @@ export default function OnboardingPage() {
       data: { user },
     } = await supabase.auth.getUser();
     if (user) {
-      await supabase
-        .from("restaurantes")
-        .update({ onboarding_completo: true })
-        .eq("user_id", user.id);
+      await supabase.from("restaurantes").update({ onboarding_completo: true }).eq("user_id", user.id);
     }
     router.push("/painel");
     router.refresh();
@@ -42,41 +38,34 @@ export default function OnboardingPage() {
   const ultimo = passo === PASSOS.length - 1;
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-4">
-      <div className="mb-4 flex gap-1.5">
-        {PASSOS.map((_, i) => (
-          <div
-            key={i}
-            className={`h-1.5 flex-1 rounded-full ${
-              i <= passo ? "bg-marca" : "bg-gray-200"
-            }`}
-          />
-        ))}
-      </div>
-      <div className="card">
-        <p className="text-sm font-semibold text-marca">
-          Passo {passo + 1} de {PASSOS.length}
-        </p>
-        <h1 className="mt-1 text-xl font-extrabold text-tinta">{atual.titulo}</h1>
-        <p className="mt-2 text-tinta-3">{atual.desc}</p>
+    <main className="auth-view">
+      <div style={{ width: "100%", maxWidth: 440 }}>
+        <div className="steps-bar">
+          {PASSOS.map((_, i) => (
+            <i key={i} className={i <= passo ? "on" : ""} />
+          ))}
+        </div>
+        <div className="card card-p">
+          <div className="eyebrow" style={{ color: "var(--brand)" }}>
+            Passo {passo + 1} de {PASSOS.length}
+          </div>
+          <h1 className="serif" style={{ fontSize: 22, fontWeight: 600, marginTop: 6 }}>{atual.titulo}</h1>
+          <p className="muted" style={{ marginTop: 8, fontSize: 14 }}>{atual.desc}</p>
 
-        <div className="mt-6 flex justify-between">
-          <button
-            className="btn-secundario"
-            onClick={() => setPasso((p) => Math.max(0, p - 1))}
-            disabled={passo === 0}
-          >
-            Voltar
-          </button>
-          {ultimo ? (
-            <button className="btn-marca" onClick={concluir} disabled={salvando}>
-              {salvando ? "Finalizando..." : "Ir para o painel"}
+          <div className="row" style={{ justifyContent: "space-between", marginTop: 24 }}>
+            <button className="btn btn-ghost" onClick={() => setPasso((p) => Math.max(0, p - 1))} disabled={passo === 0}>
+              Voltar
             </button>
-          ) : (
-            <button className="btn-marca" onClick={() => setPasso((p) => p + 1)}>
-              Continuar
-            </button>
-          )}
+            {ultimo ? (
+              <button className="btn btn-primary" onClick={concluir} disabled={salvando}>
+                {salvando ? "Finalizando..." : "Ir para o painel"}
+              </button>
+            ) : (
+              <button className="btn btn-primary" onClick={() => setPasso((p) => p + 1)}>
+                Continuar
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </main>
